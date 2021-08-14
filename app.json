@@ -1,0 +1,12 @@
+{
+  "name": "goalsetter",
+  "displayName": "goalsetter",
+  "expo": {
+    "name": "goalsetter",
+    "slug": "goalsetter",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
