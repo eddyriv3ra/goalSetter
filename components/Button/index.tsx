@@ -13,9 +13,13 @@ const Button = ({
   disabled,
   ...pressableProps
 }: ButtonProps) => {
+  const handleOnPress = () => {
+    !disabled && onPress();
+  };
+
   return (
     <Pressable
-      onPress={onPress}
+      onPress={handleOnPress}
       style={({ pressed }) => [
         {
           backgroundColor: pressed ? "#a0d37c" : "#5FBA20",

@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import LinearGradient from "react-native-linear-gradient";
 import { emailRegex } from "../../utils";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from "react-native-gesture-handler";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import Header from "../../components/header";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../../App";
+
+type homeScreenProp = StackNavigationProp<RootStackParamList, "Home">;
 
 const Home = () => {
+  const navigation = useNavigation<homeScreenProp>();
   const [values, setValues] = useState<{
     firstName: {
       value: string;
@@ -73,7 +77,9 @@ const Home = () => {
     }
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    navigation.navigate("LinkBank");
+  };
 
   return (
     <View style={styles.container}>
@@ -124,7 +130,9 @@ const Home = () => {
             error={values.password.error}
           />
         </View>
-        <View style={styles.footerContainer}>
+      </ScrollView>
+      <View style={styles.footerContainer}>
+        <View style={styles.footer}>
           <Text style={styles.footerText}>
             By creating this account, I agree that I am a U.S. resident, 18
             years or older with a valid bank account. I agree to Goalsetter’s .
@@ -139,7 +147,7 @@ const Home = () => {
           </Text>
           <Button
             title="CREATE FREE ACCOUNT"
-            onPress={() => console.log("sarasa")}
+            onPress={handleSubmit}
             disabled={
               !values.firstName.value ||
               !values.lastName.value ||
@@ -148,7 +156,7 @@ const Home = () => {
             }
           />
         </View>
-      </ScrollView>
+      </View>
     </View>
   );
 };
@@ -166,7 +174,8 @@ const styles = StyleSheet.create({
     marginTop: 50,
     justifyContent: "center",
   },
-  footerContainer: { position: "absolute", bottom: 30 },
+  footerContainer: { alignItems: "center" },
+  footer: { position: "absolute", bottom: 30 },
   footerText: {
     textAlign: "center",
     color: "#000000",
