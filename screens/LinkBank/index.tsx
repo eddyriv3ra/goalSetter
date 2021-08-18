@@ -26,7 +26,7 @@ const LinkBank = () => {
       </ScrollView>
       <View style={styles.footerContainer}>
         <View style={styles.footer}>
-          <Button title="LINK A BANK" onPress={() => console.log("sarasa")} />
+          <Button title="LINK A BANK" onPress={() => console.log("finish")} />
         </View>
       </View>
     </View>

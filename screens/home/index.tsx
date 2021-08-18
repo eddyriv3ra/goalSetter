@@ -137,9 +137,7 @@ const Home = () => {
             By creating this account, I agree that I am a U.S. resident, 18
             years or older with a valid bank account. I agree to Goalsetter’s .
             <Text
-              onPress={() => {
-                alert("but this is");
-              }}
+              onPress={() => navigation.navigate("Terms")}
               style={styles.textLinkColor}
             >
               Terms of Service
