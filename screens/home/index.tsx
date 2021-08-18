@@ -6,6 +6,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from "react-native-gesture-handler";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
+import Header from "../../components/header";
 
 const Home = () => {
   const [values, setValues] = useState<{
@@ -76,19 +77,12 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
-      <LinearGradient
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
+      <Header
+        title="Create Your Account"
+        subtitle="  You can be a parent, godparent, grandparent or even a favorite aunt.
+          We’ll add the kids after!"
         colors={["#00DCEC", "#00B7D5"]}
-      >
-        <SafeAreaView>
-          <Text style={styles.title}>Create Your Account</Text>
-          <Text style={styles.subtitle}>
-            You can be a parent, godparent, grandparent or even a favorite aunt.
-            We’ll add the kids after!
-          </Text>
-        </SafeAreaView>
-      </LinearGradient>
+      />
       <ScrollView
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.scrollContainer}
@@ -180,17 +174,4 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   textLinkColor: { color: "#17BFDD", fontWeight: "700" },
-  title: {
-    fontSize: 25,
-    paddingVertical: 10,
-    color: "#FFFFFF",
-    textAlign: "center",
-    fontWeight: "700",
-  },
-  subtitle: {
-    color: "#FFFFFF",
-    textAlign: "center",
-    fontWeight: "700",
-    paddingHorizontal: 20,
-  },
 });
