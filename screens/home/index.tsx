@@ -81,6 +81,14 @@ const Home = () => {
     navigation.navigate("LinkBank");
   };
 
+  console.log(
+    values.password.value.length < 4 &&
+      !values.firstName.value &&
+      !values.lastName.value &&
+      !values.email.error &&
+      !values.password.error
+  );
+
   return (
     <View style={styles.container}>
       <Header
@@ -147,6 +155,7 @@ const Home = () => {
             title="CREATE FREE ACCOUNT"
             onPress={handleSubmit}
             disabled={
+              values.password.value.length < 4 ||
               !values.firstName.value ||
               !values.lastName.value ||
               values.email.error ||
