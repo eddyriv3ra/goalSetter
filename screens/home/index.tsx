@@ -64,7 +64,7 @@ const Home = () => {
   };
 
   const passwordValidator = () => {
-    if (values.password.value.length <= 4) {
+    if (values.password.value.length < 4) {
       setValues({
         ...values,
         password: { error: true, value: values.password.value },
@@ -80,14 +80,6 @@ const Home = () => {
   const handleSubmit = () => {
     navigation.navigate("LinkBank");
   };
-
-  console.log(
-    values.password.value.length < 4 &&
-      !values.firstName.value &&
-      !values.lastName.value &&
-      !values.email.error &&
-      !values.password.error
-  );
 
   return (
     <View style={styles.container}>
