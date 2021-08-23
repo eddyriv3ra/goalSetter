@@ -1,6 +1,13 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { Text, StyleSheet, Image, Pressable } from "react-native";
+import {
+  Text,
+  StyleSheet,
+  Image,
+  Pressable,
+  Platform,
+  View,
+} from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -14,15 +21,30 @@ interface HeaderProps {
 const Header = ({ colors, title, subtitle, enableBackButton }: HeaderProps) => {
   const navigation = useNavigation();
   return (
-    <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={colors}>
+    <LinearGradient
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 0 }}
+      colors={colors}
+      style={Platform.OS === "android" && { paddingBottom: 20 }}
+    >
       <SafeAreaView>
         {enableBackButton && (
-          <Pressable onPress={() => navigation.goBack()}>
-            <Image
-              source={require("../../assets/back.png")}
-              style={styles.image}
-            />
-          </Pressable>
+          <View>
+            <Pressable
+              onPress={() => navigation.goBack()}
+              style={{
+                position: "absolute",
+                left: 10,
+                top: 10,
+                zIndex: 2,
+              }}
+            >
+              <Image
+                source={require("../../assets/back.png")}
+                style={styles.image}
+              />
+            </Pressable>
+          </View>
         )}
 
         <Text style={styles.title}>{title}</Text>
@@ -36,12 +58,9 @@ export default Header;
 
 const styles = StyleSheet.create({
   image: {
-    position: "absolute",
     tintColor: "#fff",
     width: 30,
     height: 30,
-    left: 10,
-    top: 10,
   },
   title: {
     fontSize: 25,

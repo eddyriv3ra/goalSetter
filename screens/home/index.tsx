@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Platform } from "react-native";
 import { emailRegex } from "../../utils";
 import { ScrollView } from "react-native-gesture-handler";
 import Input from "../../components/Input";
@@ -8,6 +8,7 @@ import Header from "../../components/header";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../App";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 type homeScreenProp = StackNavigationProp<RootStackParamList, "Home">;
 
@@ -143,17 +144,19 @@ const Home = () => {
               Terms of Service
             </Text>
           </Text>
-          <Button
-            title="CREATE FREE ACCOUNT"
-            onPress={handleSubmit}
-            disabled={
-              values.password.value.length < 4 ||
-              !values.firstName.value ||
-              !values.lastName.value ||
-              values.email.error ||
-              values.password.error
-            }
-          />
+          <SafeAreaView>
+            <Button
+              title="CREATE FREE ACCOUNT"
+              onPress={handleSubmit}
+              disabled={
+                values.password.value.length < 4 ||
+                !values.firstName.value ||
+                !values.lastName.value ||
+                values.email.error ||
+                values.password.error
+              }
+            />
+          </SafeAreaView>
         </View>
       </View>
     </View>
@@ -173,8 +176,12 @@ const styles = StyleSheet.create({
     marginTop: 50,
     justifyContent: "center",
   },
-  footerContainer: { alignItems: "center" },
-  footer: { position: "absolute", bottom: 30 },
+  footerContainer: {
+    alignItems: "center",
+    marginHorizontal: 10,
+    marginBottom: Platform.OS === "android" ? 20 : 0,
+  },
+  footer: { position: "absolute", bottom: 0 },
   footerText: {
     textAlign: "center",
     color: "#000000",

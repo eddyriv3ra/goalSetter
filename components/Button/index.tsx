@@ -41,7 +41,6 @@ export default Button;
 
 const styles = StyleSheet.create({
   appButtonContainer: {
-    elevation: 8,
     borderRadius: 10,
     paddingVertical: 20,
     paddingHorizontal: 12,
